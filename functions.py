@@ -1,6 +1,8 @@
 import numpy as np
 import cv2
 from typing import Tuple, List, Union
+from sklearn.cluster import KMeans
+from sklearn.metrics import pairwise_distances_argmin_min
 
 
 def calculate_center_distance(circle1: Tuple[int, int, int], circle2: Tuple[int, int, int]) -> float:
@@ -143,3 +145,32 @@ def extract_sift_features(coin: np.ndarray, n_features: int = 128) -> Tuple[np.n
     keypoints, descriptors = sift.detectAndCompute(gray_coin, None)
 
     return keypoints, descriptors
+
+
+def create_visual_vocabulary(descriptors_list: List[np.ndarray], n_clusters: int) -> np.ndarray:
+    """
+    Create a visual vocabulary using k-means clustering on the SIFT descriptors.
+    
+    :param descriptors_list: A list of numpy arrays containing SIFT descriptors for each coin.
+    :param n_clusters: The number of clusters (visual words) to be created.
+    :return: A numpy array containing the cluster centers (visual words).
+    """
+    all_descriptors = np.vstack(descriptors_list)
+    kmeans = KMeans(n_clusters=n_clusters, n_init=10, random_state=42)
+    kmeans.fit(all_descriptors)
+    
+    return kmeans.cluster_centers_
+
+
+def calculate_histogram_of_visual_words(descriptors: np.ndarray, visual_words: np.ndarray) -> np.ndarray:
+    """
+    Calculate the histogram of visual words for a given set of SIFT descriptors.
+    
+    :param descriptors: A numpy array containing the SIFT descriptors for a single coin.
+    :param visual_words: A numpy array containing the visual words (cluster centers).
+    :return: A numpy array representing the histogram of visual words.
+    """
+    closest_visual_words, _ = pairwise_distances_argmin_min(descriptors, visual_words)
+    histogram = np.bincount(closest_visual_words, minlength=len(visual_words))
+    
+    return histogram
