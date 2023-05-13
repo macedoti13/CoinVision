@@ -123,3 +123,23 @@ def extract_coin(image: np.ndarray, circle: Tuple[int, int, int]) -> np.ndarray:
     """
     x, y, r = circle
     return image[y - r:y + r, x - r:x + r]
+
+
+def extract_sift_features(coin: np.ndarray, n_features: int = 128) -> Tuple[np.ndarray, np.ndarray]:
+    """
+    Extract SIFT features from the given coin image.
+    
+    :param coin: A numpy array representing the extracted coin image in RGB format.
+    :param n_features: The number of desired features to extract (default is 128).
+    :return: A tuple containing the keypoint locations and their corresponding descriptors.
+    """
+    # Convert the RGB coin image to grayscale
+    gray_coin = cv2.cvtColor(coin, cv2.COLOR_RGB2GRAY)
+
+    # Initialize the SIFT object
+    sift = cv2.SIFT_create(nfeatures=n_features)
+
+    # Detect keypoints and compute descriptors
+    keypoints, descriptors = sift.detectAndCompute(gray_coin, None)
+
+    return keypoints, descriptors
