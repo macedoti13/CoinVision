@@ -106,7 +106,7 @@ def draw_circles(img: np.ndarray, circles: np.ndarray) -> np.ndarray:
     
     :param img: The input image in RGB format.
     :param circles: A numpy array containing the circles (x, y, radius) to draw.
-    :return: The input image with circles drawn on it.
+    :return: The input image with circles drawn on it
     """
     for circle in circles:
         img = cv2.circle(img, (circle[0], circle[1]), circle[2], (0, 255, 0), 8)
