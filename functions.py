@@ -109,5 +109,17 @@ def draw_circles(img: np.ndarray, circles: np.ndarray) -> np.ndarray:
     :return: The input image with circles drawn on it.
     """
     for circle in circles:
-        img = cv2.circle(img, (circle[0], circle[1]), circle[2], (0, 255, 0), 6)
+        img = cv2.circle(img, (circle[0], circle[1]), circle[2], (0, 255, 0), 8)
     return img
+
+
+def extract_coin(image: np.ndarray, circle: Tuple[int, int, int]) -> np.ndarray:
+    """
+    Extract a coin from the input image given its circle (center and radius).
+
+    :param image: The input image in RGB format.
+    :param circle: A tuple containing the x, y coordinates and radius of the coin circle.
+    :return: A numpy array containing the extracted coin.
+    """
+    x, y, r = circle
+    return image[y - r:y + r, x - r:x + r]
