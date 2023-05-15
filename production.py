@@ -2,22 +2,23 @@ from functions import *
 import os
 import subprocess
 import pickle
+import matplotlib.pyplot as plt
 
 def main():
-    model_filename = 'coin_classifier.pkl'
-    training_data_filename = 'training_data.pkl'
+    model_filename = 'files/coin_classifier.pkl'
+    training_data_filename = 'files/training_data.pkl'
     
     labels = [
-        ['1_real'],
-        ['50_cents'],
-        ['25_cents'],
-        ['5_cents'],
-        ['10_cents'],
-        ['50_cents', '25_cents', '1_real', '5_cents', '10_cents'],
-        ['50_cents', '25_cents', '10_cents'],
-        ['1_real', '50_cents'],
-        ['1_real', '50_cents', '10_cents'],
-        ['25_cents', '10_cents']
+        ['1 real'],
+        ['50 centavos'],
+        ['25 centavos'],
+        ['5 centavos'],
+        ['10 centavos'],
+        ['50 centavos', '25 centavos', '1 real', '5 centavos', '10 centavos'],
+        ['50 centavos', '25 centavos', '10 centavos'],
+        ['1 real', '50 centavos'],
+        ['1 real', '50 centavos', '10 centavos'],
+        ['25 centavos', '10 centavos']
     ]
 
     # Check if the model file exists
@@ -43,6 +44,7 @@ def main():
     # Load the trained model
     with open(model_filename, 'rb') as f:
         model = pickle.load(f)
+    
 
     for i in range(10):
         img_gray, img_rgb = prepare_img(f'images/img{i}.png')
@@ -56,6 +58,17 @@ def main():
             # Predict the class of each coin
             predictions = model.predict(coins_histograms)
             
-            print(f'Predictions for image {i}: {predictions}')
+             # Draw the circles and predictions
+            for (x, y, r), prediction in zip(filtered_circles, predictions):
+                # Draw the circle
+                cv2.circle(img_rgb, (x, y), r, (0, 255, 0), 8)
+                
+                # Draw the prediction
+                cv2.putText(img_rgb, prediction, (x-100, y-(r+30)), cv2.FONT_HERSHEY_SIMPLEX, 3, (255, 0, 0), 8)
+                
+            # Display the image
+            plt.imshow(img_rgb)
+            plt.axis('off')  # to hide x, y axes
+            plt.show()
 
 main()
