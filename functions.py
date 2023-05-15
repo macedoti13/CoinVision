@@ -1,4 +1,5 @@
 import numpy as np
+import pickle
 import cv2
 from typing import Tuple, List, Union
 from sklearn.cluster import KMeans
@@ -174,3 +175,61 @@ def calculate_histogram_of_visual_words(descriptors: np.ndarray, visual_words: n
     histogram = np.bincount(closest_visual_words, minlength=len(visual_words))
     
     return histogram
+
+
+def create_histogram_of_visual_words(image: np.array, circles: List[Tuple[int, int, int]]) -> List[np.array]:
+    """
+    Process the given image and extract the histogram of visual words for each coin in the image.
+
+    Args:
+    img_rgb (np.array): The input image in RGB format.
+    circles (list): A list of circles detected in the image. Each circle is represented by a tuple (x, y, radius).
+
+    Returns:
+    list of np.array: A list of histograms of visual words. Each histogram corresponds to a coin in the image.
+    """
+    
+    # Get only the coins from the image
+    coins = [extract_coin(image, circle) for circle in circles]
+        
+    # Apply SIFT to the coins
+    sift_results = [extract_sift_features(coin, 128) for coin in coins]
+    descriptors = [result[1] for result in sift_results]
+        
+    # Create visual vocabulary
+    visual_vocabulary = create_visual_vocabulary(descriptors, 100)
+        
+    # Get coins histogram of visual words
+    coins_histograms = [calculate_histogram_of_visual_words(descriptor, visual_vocabulary) for descriptor in descriptors]
+    
+    return coins_histograms
+
+
+def update_training_data(coins_histograms: List[np.array], labels: List[str], training_data: List[Tuple[np.array, str]]) -> None:
+    """
+    Update training data by appending each coin's histogram of visual words along with its corresponding label.
+
+    Args:
+    coins_histograms (list of np.array): A list of histograms of visual words. Each histogram corresponds to a coin.
+    labels (list of str): A list of labels. Each label corresponds to a coin.
+    training_data (list of tuple): The existing training data list which will be updated.
+
+    Returns:
+    None. The training_data list passed as an argument will be updated.
+    """
+    for histogram, label in zip(coins_histograms, labels):
+        training_data.append((histogram, label))
+
+
+def save_training_data(training_data: List[Tuple[np.array, str]], filename: str) -> None:
+    """
+    Save the training data to a file.
+
+    Args:
+    training_data (list of tuple): The training data to save.
+    filename (str): The name of the file to save the training data to.
+    """
+    with open(filename, 'wb') as f:
+        pickle.dump(training_data, f)
+    
+    

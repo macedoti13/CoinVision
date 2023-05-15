@@ -1,5 +1,6 @@
 import matplotlib.pyplot as plt
 from functions import *
+import pickle
 
 def main():
     fig, axs = plt.subplots(2, 5, figsize=(24,10))
