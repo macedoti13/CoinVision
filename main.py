@@ -45,6 +45,7 @@ def main():
     with open(model_filename, 'rb') as f:
         model = pickle.load(f)
     
+    fig, axs = plt.subplots(2, 5, figsize=(15, 6))
 
     for i in range(10):
         img_gray, img_rgb = prepare_img(f'images/img{i}.png')
@@ -66,9 +67,12 @@ def main():
                 # Draw the prediction
                 cv2.putText(img_rgb, prediction, (x-100, y-(r+30)), cv2.FONT_HERSHEY_SIMPLEX, 3, (255, 0, 0), 8)
                 
-            # Display the image
-            plt.imshow(img_rgb)
-            plt.axis('off')  
-            plt.show()
+            # Display the image in the subplot
+        axs[i // 5, i % 5].imshow(img_rgb)
+        axs[i // 5, i % 5].axis('off')  # to hide x, y axes
+
+    # Display all subplots
+    plt.tight_layout()
+    plt.show()
 
 main()
