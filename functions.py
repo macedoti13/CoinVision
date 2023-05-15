@@ -231,5 +231,3 @@ def save_training_data(training_data: List[Tuple[np.array, str]], filename: str)
     """
     with open(filename, 'wb') as f:
         pickle.dump(training_data, f)
-    
-    
