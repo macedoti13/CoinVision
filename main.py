@@ -68,7 +68,7 @@ def main():
                 
             # Display the image
             plt.imshow(img_rgb)
-            plt.axis('off')  # to hide x, y axes
+            plt.axis('off')  
             plt.show()
 
 main()
