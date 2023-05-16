@@ -58,6 +58,11 @@ def main():
 
             # Predict the class of each coin
             predictions = model.predict(coins_histograms)
+            
+            # Calculate the total value
+            total_value = calculate_total_value(predictions)
+            
+            print(f'Total value in the image: {total_value} Real')
 
             # Draw the circles and predictions
             for (x, y, r), prediction in zip(filtered_circles, predictions):

@@ -231,3 +231,29 @@ def save_training_data(training_data: List[Tuple[np.array, str]], filename: str)
     """
     with open(filename, 'wb') as f:
         pickle.dump(training_data, f)
+        
+        
+def calculate_total_value(predictions: List[str]) -> float:
+    """
+    Calculate the total value of coins detected in the image, in Brazilian Real.
+
+    Args:
+    predictions (List[str]): A list of predicted coin labels.
+
+    Returns:
+    float: The total value of coins in the image, in Brazilian Real.
+    """
+    coin_values = {
+        '1 real': 1.00,
+        '50 centavos': 0.50,
+        '25 centavos': 0.25,
+        '10 centavos': 0.10,
+        '5 centavos': 0.05
+    }
+
+    total_value = 0
+    for prediction in predictions:
+        if prediction in coin_values:
+            total_value += coin_values[prediction]
+    
+    return round(total_value, 2)
