@@ -62,7 +62,7 @@ def main():
             # Calculate the total value
             total_value = calculate_total_value(predictions)
             
-            print(f'Total value in the image: {total_value} Real')
+            write_to_log('coin_values.txt', i, total_value)
 
             # Draw the circles and predictions
             for (x, y, r), prediction in zip(filtered_circles, predictions):

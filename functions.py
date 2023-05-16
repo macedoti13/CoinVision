@@ -257,3 +257,19 @@ def calculate_total_value(predictions: List[str]) -> float:
             total_value += coin_values[prediction]
     
     return round(total_value, 2)
+
+
+def write_to_log(log_filename: str, image_number: int, total_value: float):
+    """
+    Write the total value of coins in an image to a log file.
+    
+    Args:
+    log_filename (str): The name of the log file.
+    image_number (int): The number of the image.
+    total_value (float): The total value of coins in the image.
+    
+    Returns:
+    None
+    """
+    with open(log_filename, 'a') as f:
+        f.write(f"Image {image_number+1}: {total_value:.2f} reais, 0 dólares, 0 euros, 0 libras, 0 pesos, 0 bitcoins\n")
