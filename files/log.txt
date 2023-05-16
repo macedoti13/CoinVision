@@ -1,0 +1,80 @@
+Image 1: 1.0 reais são equivalentes a: 
+   - 0.2 USD
+   - 0.19 EUR
+   - 0.16 GBP
+   - 46.61 ARS
+   - 1.42 CNY
+   - 0.28 CAD
+
+Image 2: 0.5 reais são equivalentes a: 
+   - 0.1 USD
+   - 0.09 EUR
+   - 0.08 GBP
+   - 23.3 ARS
+   - 0.71 CNY
+   - 0.14 CAD
+
+Image 3: 0.25 reais são equivalentes a: 
+   - 0.05 USD
+   - 0.05 EUR
+   - 0.04 GBP
+   - 11.65 ARS
+   - 0.35 CNY
+   - 0.07 CAD
+
+Image 4: 0.05 reais são equivalentes a: 
+   - 0.01 USD
+   - 0.01 EUR
+   - 0.01 GBP
+   - 2.33 ARS
+   - 0.07 CNY
+   - 0.01 CAD
+
+Image 5: 0.1 reais são equivalentes a: 
+   - 0.02 USD
+   - 0.02 EUR
+   - 0.02 GBP
+   - 4.66 ARS
+   - 0.14 CNY
+   - 0.03 CAD
+
+Image 6: 1.9 reais são equivalentes a: 
+   - 0.39 USD
+   - 0.36 EUR
+   - 0.31 GBP
+   - 88.56 ARS
+   - 2.7 CNY
+   - 0.52 CAD
+
+Image 7: 0.85 reais são equivalentes a: 
+   - 0.17 USD
+   - 0.16 EUR
+   - 0.14 GBP
+   - 39.62 ARS
+   - 1.21 CNY
+   - 0.23 CAD
+
+Image 8: 1.5 reais são equivalentes a: 
+   - 0.3 USD
+   - 0.28 EUR
+   - 0.24 GBP
+   - 69.91 ARS
+   - 2.13 CNY
+   - 0.41 CAD
+
+Image 9: 1.6 reais são equivalentes a: 
+   - 0.32 USD
+   - 0.3 EUR
+   - 0.26 GBP
+   - 74.58 ARS
+   - 2.27 CNY
+   - 0.44 CAD
+
+Image 10: 0.35 reais são equivalentes a: 
+   - 0.07 USD
+   - 0.07 EUR
+   - 0.06 GBP
+   - 16.31 ARS
+   - 0.5 CNY
+   - 0.1 CAD
+
