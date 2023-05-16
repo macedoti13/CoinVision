@@ -8,13 +8,13 @@ This project uses image processing techniques and machine learning to detect and
 
 The project follows these main steps:
 
-1. Image Preprocessing: Images are converted to grayscale and smoothed using Gaussian blur to reduce noise and detail.
-2. Coin Detection: Coins are detected using the Hough Circle Transform implemented in OpenCV. This algorithm finds circular shapes in the image.
-3. eature Extraction: SIFT (Scale-Invariant Feature Transform) is used to detect and describe local features in the images. These features are essentially a set of keypoints and descriptors that capture the unique aspects of the image content around the detected keypoints, making them invariant to image scale, orientation, and affine distortion.
-4. Histogram of Visual Words: We use a bag-of-visual-words model to represent each coin. We first build a codebook of visual words by clustering all descriptors using KMeans. Each cluster centroid represents a visual word. We then represent each coin by a histogram indicating the frequency of each visual word in the coin.
-5. Training a Classifier: We use a Support Vector Machine (SVM) classifier to learn the mapping from the histogram of visual words to the coin class. The SVM model is trained on a labeled dataset and then saved for future use.
-6. Coin Classification: We use the trained SVM model to classify the coins in new images.
-7. Currency Conversion: We calculate the total value of the detected coins and convert this value to other currencies using the Exchange Rates API.
+1. **Image Preprocessing:** Images are converted to grayscale and smoothed using Gaussian blur to reduce noise and detail.
+2. **Coin Detection:* Coins are detected using the Hough Circle Transform implemented in OpenCV. This algorithm finds circular shapes in the image.
+3. **Feature Extraction:** SIFT (Scale-Invariant Feature Transform) is used to detect and describe local features in the images. These features are essentially a set of keypoints and descriptors that capture the unique aspects of the image content around the detected keypoints, making them invariant to image scale, orientation, and affine distortion.
+4. **Histogram of Visual Words:** We use a bag-of-visual-words model to represent each coin. We first build a codebook of visual words by clustering all descriptors using KMeans. Each cluster centroid represents a visual word. We then represent each coin by a histogram indicating the frequency of each visual word in the coin.
+5. **Training a Classifier:** We use a Support Vector Machine (SVM) classifier to learn the mapping from the histogram of visual words to the coin class. The SVM model is trained on a labeled dataset and then saved for future use.
+6. **Coin Classification:** We use the trained SVM model to classify the coins in new images.
+7. **Currency Conversion:** We calculate the total value of the detected coins and convert this value to other currencies using the Exchange Rates API.
 
 # How to Use
 
@@ -38,8 +38,10 @@ This means that in the first image, coins worth 3.75 reais were detected, and th
 
 ## Technologies Used
 
-- Python: The project is implemented in Python, a powerful and versatile programming language that is widely used in data science and machine learning.
-- OpenCV: OpenCV (Open Source Computer Vision Library) is used for image processing tasks such as converting images to grayscale, applying Gaussian blur, and detecting circles.
-- scikit-learn: scikit-learn is a popular machine learning library in Python. We use it to implement the SVM classifier and the KMeans clustering for creating the codebook of visual words.
-- SIFT: SIFT (Scale-Invariant Feature Transform) is an algorithm in computer vision to detect and describe local features in images. It was patented by the University of British Columbia and since 2020 is free to use.
-- Exchange Rates API: The Exchange Rates API is a free service for current and historical foreign exchange rates. We use it to convert the total value of coins from Brazilian reais to other currencies.
+- **Python:** The project is implemented in Python, a powerful and versatile programming language that is widely used in data science and machine learning.
+- **OpenCV:** OpenCV (Open Source Computer Vision Library) is used for image processing tasks such as converting images to grayscale, applying Gaussian blur, and detecting circles.
+- **scikit-learn:** scikit-learn is a popular machine learning library in Python. We use it to implement the SVM classifier and the KMeans clustering for creating the codebook of visual words.
+- **SIFT:** SIFT (Scale-Invariant Feature Transform) is an algorithm in computer vision to detect and describe local features in images. It was patented by the University of British Columbia and since 2020 is free to use.
+- **Exchange Rates API:** The Exchange Rates API is a free service for current and historical foreign exchange rates. We use it to convert the total value of coins from Brazilian reais to other currencies.
+
+obs: This readme file was written by chatGPT
