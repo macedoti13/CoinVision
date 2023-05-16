@@ -1,6 +1,7 @@
 import numpy as np
 import pickle
 import cv2
+import requests
 from typing import Tuple, List, Union
 from sklearn.cluster import KMeans
 from sklearn.metrics import pairwise_distances_argmin_min
@@ -272,4 +273,31 @@ def write_to_log(log_filename: str, image_number: int, total_value: float):
     None
     """
     with open(log_filename, 'a') as f:
-        f.write(f"Image {image_number+1}: {total_value:.2f} reais, 0 dólares, 0 euros, 0 libras, 0 pesos, 0 bitcoins\n")
+        f.write(f"Imagem {image_number+1}: {total_value:.2f} reais, 0 dólares, 0 euros, 0 libras, 0 pesos, 0 bitcoins\n")
+
+
+def get_exchange_rates():
+    """
+    Get the current exchange rates for Brazilian Real.
+
+    Returns:
+    dict: A dictionary of exchange rates for Brazilian Real to various other currencies.
+    """
+    response = requests.get('https://api.exchangerate-api.com/v4/latest/BRL')
+    rates = response.json()['rates']
+    return rates
+
+
+def get_conversion_rates(currencies: List[str]) -> dict:
+    """
+    Get the current exchange rates for Brazilian Real to the specified currencies.
+
+    Args:
+    currencies (List[str]): The list of currencies to get the exchange rates for.
+
+    Returns:
+    dict: A dictionary of exchange rates for Brazilian Real to the specified currencies.
+    """
+    rates = get_exchange_rates()
+    conversion_rates = {currency: rates[currency] for currency in currencies if currency in rates}
+    return conversion_rates
