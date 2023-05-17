@@ -9,11 +9,11 @@ This project uses image processing techniques and machine learning to detect and
 The project follows these main steps:
 
 1. **Image Preprocessing:** Images are converted to grayscale and smoothed using Gaussian blur to reduce noise and detail.
-2. **Coin Detection:* Coins are detected using the Hough Circle Transform implemented in OpenCV. This algorithm finds circular shapes in the image.
+2. **Coin Detection:** Coins are detected using the Hough Circle Transform implemented in OpenCV. This algorithm finds circular shapes in the image.
 3. **Feature Extraction:** SIFT (Scale-Invariant Feature Transform) is used to detect and describe local features in the images. These features are essentially a set of keypoints and descriptors that capture the unique aspects of the image content around the detected keypoints, making them invariant to image scale, orientation, and affine distortion.
 4. **Histogram of Visual Words:** We use a bag-of-visual-words model to represent each coin. We first build a codebook of visual words by clustering all descriptors using KMeans. Each cluster centroid represents a visual word. We then represent each coin by a histogram indicating the frequency of each visual word in the coin.
-5. **Training a Classifier:** We use a Support Vector Machine (SVM) classifier to learn the mapping from the histogram of visual words to the coin class. The SVM model is trained on a labeled dataset and then saved for future use.
-6. **Coin Classification:** We use the trained SVM model to classify the coins in new images.
+5. **Training a Classifier:** We use a Random Forest classifier to learn the mapping from the histogram of visual words to the coin class. The model is trained on a labeled dataset and then saved for future use.
+6. **Coin Classification:** We use the trained model to classify the coins in new images.
 7. **Currency Conversion:** We calculate the total value of the detected coins and convert this value to other currencies using the Exchange Rates API.
 
 # How to Use
